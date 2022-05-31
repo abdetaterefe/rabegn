@@ -19,39 +19,43 @@ class UserDashboardView extends GetView<UserDashboardController> {
             children: [
               Expanded(
                 flex: 1,
-                child: const DashBoardCard(
-                  category: 'users',
-                  info: '42',
-                ).asGlass(
-                  tintColor: Colors.orange,
-                  clipBorderRadius: BorderRadius.circular(10),
+                child: Obx(
+                  () => DashBoardCard(
+                    category: 'users',
+                    info: '${controller.users.length}',
+                  ).asGlass(
+                    tintColor: Colors.orange,
+                    clipBorderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               ),
               const SizedBox(
                 height: 10,
               ),
-              Expanded(
-                flex: 5,
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  itemCount: 5,
-                  physics: const ScrollPhysics(parent: null),
-                  separatorBuilder: (context, index) {
-                    return const SizedBox(
-                      height: 10,
-                    );
-                  },
-                  itemBuilder: (context, index) {
-                    return UserDashBoardCard(
-                      userName: 'User Name',
-                      userEmail: 'useremail@email.com',
-                      delete: () {},
-                    ).asGlass(
-                      tintColor: Colors.orange,
-                      clipBorderRadius: BorderRadius.circular(10),
-                    );
-                  },
+              Obx(
+                () => Expanded(
+                  flex: 5,
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: controller.users.length,
+                    physics: const ScrollPhysics(parent: null),
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(
+                        height: 10,
+                      );
+                    },
+                    itemBuilder: (context, index) {
+                      return UserDashBoardCard(
+                        userName: controller.users[index].name,
+                        userEmail: controller.users[index].email,
+                        delete: () {},
+                      ).asGlass(
+                        tintColor: Colors.orange,
+                        clipBorderRadius: BorderRadius.circular(10),
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
