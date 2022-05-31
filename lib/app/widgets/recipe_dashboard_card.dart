@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,12 +21,13 @@ class RecpeDashBoardCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            height: MediaQuery.of(context).size.height * .08,
-            width: MediaQuery.of(context).size.height * .08,
-            decoration: BoxDecoration(
-              color: Colors.orange,
-              borderRadius: BorderRadius.circular(10),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: CachedNetworkImage(
+              height: MediaQuery.of(context).size.height * .08,
+              width: MediaQuery.of(context).size.height * .08,
+              imageUrl: recipeImage,
+              fit: BoxFit.cover,
             ),
           ),
           const SizedBox(

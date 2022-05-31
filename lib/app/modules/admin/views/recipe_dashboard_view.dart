@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:glass/glass.dart';
 import 'package:rabegn/app/modules/admin/controllers/recipe_dashboard_controller.dart';
 import 'package:rabegn/app/modules/admin/views/add_recipe_view.dart';
-import 'package:rabegn/app/modules/admin/views/edit_recipe_view.dart';
 import 'package:rabegn/app/widgets/add_recipe_FAB.dart';
 import 'package:rabegn/app/widgets/dashboard_card.dart';
 import 'package:rabegn/app/widgets/recipe_dashboard_card.dart';
@@ -22,42 +21,47 @@ class RecipeDashboardView extends GetView<RecipeDashboardController> {
             children: [
               Expanded(
                 flex: 1,
-                child: const DashBoardCard(
-                  category: 'recipes',
-                  info: '27',
-                ).asGlass(
-                  tintColor: Colors.orange,
-                  clipBorderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Expanded(
-                flex: 5,
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  itemCount: 15,
-                  physics: const ScrollPhysics(parent: null),
-                  separatorBuilder: (context, index) {
-                    return const SizedBox(
-                      height: 10,
-                    );
-                  },
-                  itemBuilder: (context, index) {
-                    return RecpeDashBoardCard(
-                      recipeImage: '',
-                      recipeName: 'Recipe Name',
-                      edit: () {
-                        Get.to(() => EditRecipeView());
-                      },
-                      delete: () {},
+                child: Obx(
+                  () {
+                    return DashBoardCard(
+                      category: 'recipes',
+                      info: '${controller.recipes.length}',
                     ).asGlass(
                       tintColor: Colors.orange,
                       clipBorderRadius: BorderRadius.circular(10),
                     );
                   },
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Obx(
+                () => Expanded(
+                  flex: 5,
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: controller.recipes.length,
+                    physics: const ScrollPhysics(parent: null),
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(
+                        height: 10,
+                      );
+                    },
+                    itemBuilder: (context, index) {
+                      return RecpeDashBoardCard(
+                        recipeImage: controller.recipes[index].image,
+                        recipeName: controller.recipes[index].name,
+                        edit: () {},
+                        delete: () => controller
+                            .deleteRecipe(controller.recipes[index].recipeId),
+                      ).asGlass(
+                        tintColor: Colors.orange,
+                        clipBorderRadius: BorderRadius.circular(10),
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
