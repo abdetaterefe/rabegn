@@ -17,21 +17,18 @@ class ThemeService extends GetxController {
     _getStorage.write(storageKey, isDarkMode);
   }
 
-  void changeThemeMode(bool value) {
-    isDarkMode = !isDarkMode;
-    isDarkMode = value;
+  void changeThemeMode() {
     Get.changeThemeMode(isSavedDarkMode() ? ThemeMode.light : ThemeMode.dark);
     saveThemeMode(!isSavedDarkMode());
-    update();
   }
 
-  void toggleTheme(bool value) {
-    isDarkMode = value;
-    if (isDarkMode) {
-      Get.changeThemeMode(ThemeMode.dark);
-    } else {
-      Get.changeThemeMode(ThemeMode.light);
-    }
-    saveThemeMode(isDarkMode);
+  lightTheme() {
+    Get.changeThemeMode(ThemeMode.light);
+    saveThemeMode(!isSavedDarkMode());
+  }
+
+  darkTheme() {
+    Get.changeThemeMode(ThemeMode.dark);
+    saveThemeMode(!isSavedDarkMode());
   }
 }
