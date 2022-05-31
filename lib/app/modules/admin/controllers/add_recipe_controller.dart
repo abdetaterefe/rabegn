@@ -30,14 +30,6 @@ class AddRecipeController extends GetxController {
   final ingrCount = 1.obs;
   final instCount = 1.obs;
 
-  late CollectionReference collectionReference;
-
-  @override
-  void onInit() {
-    collectionReference = firestore.collection("recipes");
-    super.onInit();
-  }
-
   void addIngrident() {
     if (ingrCount >= 9 && ingrHeight >= 750.0) {
       Get.snackbar(
@@ -148,11 +140,17 @@ class AddRecipeController extends GetxController {
             image: downloadUrl,
             time: time,
             category: category,
-            favorites: [],
+            uploadedAt: Timestamp.now(),
+            favorites: [
+              'test',
+            ],
             ingredients: ingredients,
             instructions: instructions,
           );
-          await collectionReference.doc(recipeId).set(recipeModel.toMap());
+          await firestore
+              .collection('recipes')
+              .doc(recipeId)
+              .set(recipeModel.toJson());
           dismissLoadingWidget();
           _clearControllers();
           _clearImage();

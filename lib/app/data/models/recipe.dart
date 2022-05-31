@@ -7,6 +7,7 @@ class RecipeModel {
   String image;
   String time;
   String category;
+  Timestamp uploadedAt;
   List<String> favorites;
   List<dynamic> ingredients;
   List<dynamic> instructions;
@@ -18,23 +19,23 @@ class RecipeModel {
     required this.image,
     required this.time,
     required this.category,
+    required this.uploadedAt,
     required this.favorites,
     required this.ingredients,
     required this.instructions,
   });
-  Map<String, dynamic> toMap() {
-    return {
-      'recipeId': recipeId,
-      'name': name,
-      'description': description,
-      'image': image,
-      'time': time,
-      'category': category,
-      'favorites': favorites,
-      'ingredients': ingredients,
-      'instructions': instructions,
-    };
-  }
+  Map<String, dynamic> toJson() => {
+        'recipeId': recipeId,
+        'name': name,
+        'description': description,
+        'image': image,
+        'time': time,
+        'category': category,
+        'uploadedAt': uploadedAt,
+        'favorites': favorites,
+        'ingredients': ingredients,
+        'instructions': instructions,
+      };
 
   static RecipeModel fromDocumentSnapshot(DocumentSnapshot snap) {
     var snapshot = snap.data() as Map<String, dynamic>;
@@ -45,6 +46,7 @@ class RecipeModel {
       image: snapshot["image"],
       time: snapshot["time"],
       category: snapshot["category"],
+      uploadedAt: snapshot["uploadedAt"],
       favorites: snapshot["favorites"],
       ingredients: snapshot["ingredients"],
       instructions: snapshot["instructions"],
