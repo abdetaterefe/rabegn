@@ -10,8 +10,6 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/recipe/bindings/recipe_binding.dart';
 import '../modules/recipe/views/recipe_view.dart';
-import '../modules/settings/bindings/settings_binding.dart';
-import '../modules/settings/views/settings_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
 
@@ -52,11 +50,6 @@ class AppPages {
       name: _Paths.FORGOT,
       page: () => const ForgotView(),
       binding: ForgotBinding(),
-    ),
-    GetPage(
-      name: _Paths.SETTINGS,
-      page: () => SettingsView(),
-      binding: SettingsBinding(),
     ),
   ];
 }
