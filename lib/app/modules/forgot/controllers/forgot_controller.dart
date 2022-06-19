@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rabegn/app/core/utils/helpers.dart';
+import 'package:rabegn/app/core/utils/showLoading.dart';
+
 
 class ForgotController extends GetxController {
   final GlobalKey<FormState> forgotFormKey = GlobalKey<FormState>();
@@ -25,13 +27,13 @@ class ForgotController extends GetxController {
     if (forgotFormKey.currentState!.validate()) {
       forgotFormKey.currentState!.save();
       try {
+        showLoading();
         await firebaseAuth.sendPasswordResetEmail(
             email: emailController.text.trim());
         Get.toNamed('/login');
+        dismissLoadingWidget();
       } on FirebaseAuthException catch (e) {
-        if (kDebugMode) {
-          print(e);
-        }
+        dismissLoadingWidget();
         Get.snackbar("Error", e.toString());
       }
     }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rabegn/app/core/utils/helpers.dart';
 import 'package:rabegn/app/data/models/user.dart';
+import 'package:rabegn/app/core/utils/showLoading.dart';
 
 class SignupController extends GetxController {
   final GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
@@ -47,6 +48,7 @@ class SignupController extends GetxController {
     if (signupFormKey.currentState!.validate()) {
       signupFormKey.currentState!.save();
       try {
+        showLoading();
         UserCredential cred = await firebaseAuth.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
@@ -63,10 +65,9 @@ class SignupController extends GetxController {
             .doc(cred.user!.uid)
             .set(userModel.toJson());
         Get.toNamed('/recipe');
+        dismissLoadingWidget();
       } on FirebaseAuthException catch (e) {
-        if (kDebugMode) {
-          print(e);
-        }
+        dismissLoadingWidget();
         Get.snackbar("Error", e.toString());
       }
     }

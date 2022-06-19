@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:rabegn/app/core/utils/helpers.dart';
+import 'package:rabegn/app/core/utils/showLoading.dart';
 
 class LoginController extends GetxController {
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
@@ -35,15 +35,15 @@ class LoginController extends GetxController {
     if (loginFormKey.currentState!.validate()) {
       loginFormKey.currentState!.save();
       try {
+        showLoading();
         await firebaseAuth.signInWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
         );
         Get.toNamed('/recipe');
+        dismissLoadingWidget();
       } on FirebaseAuthException catch (e) {
-        if (kDebugMode) {
-          print(e);
-        }
+        dismissLoadingWidget();
         Get.snackbar("Error", e.toString());
       }
     }
