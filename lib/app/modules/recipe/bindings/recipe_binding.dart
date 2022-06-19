@@ -3,12 +3,16 @@ import 'package:get/get.dart';
 import 'package:rabegn/app/modules/recipe/controllers/explore_controller.dart';
 import 'package:rabegn/app/modules/recipe/controllers/favorite_controller.dart';
 import 'package:rabegn/app/modules/recipe/controllers/main_recipe_controller.dart';
+import 'package:rabegn/app/modules/recipe/controllers/recipe_detail_controller.dart';
 
 import '../controllers/recipe_controller.dart';
 
 class RecipeBinding extends Bindings {
   @override
   void dependencies() {
+    Get.lazyPut<RecipeDetailController>(
+      () => RecipeDetailController(),
+    );
     Get.lazyPut<FavoriteController>(
       () => FavoriteController(),
     );

@@ -1,29 +1,46 @@
 import 'package:get/get.dart';
 import 'package:rabegn/app/core/utils/helpers.dart';
-import 'package:rabegn/app/data/models/recipe.dart';
+import 'package:rabegn/app/data/models/recipelist.dart';
+import 'package:rabegn/app/modules/recipe/views/recipe_detail_view.dart';
 
 class MainRecipeController extends GetxController {
-  final count = 0.obs;
-  final Rx<List<RecipeModel>> _recipes = Rx<List<RecipeModel>>([]);
-  List<RecipeModel> get recipes => _recipes.value;
+  final recipes = <RecipeListModel>[].obs;
+
+  RxList<RecipeListModel> carouselRecipes =
+      List<RecipeListModel>.empty(growable: true).obs;
+
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() {
+    recipes.bindStream(recipesStream());
+    carouselRecipes.bindStream(recipesStream());
     super.onInit();
-    _recipes.bindStream(
-      firestore.collection('recipes').snapshots().map(
-        (event) {
-          List<RecipeModel> reRec = [];
-          for (var element in event.docs) {
-            reRec.add(
-              RecipeModel.fromDocumentSnapshot(element),
-            );
-          }
-          return reRec;
-        },
-      ),
+  }
+
+  navigate(int index) {
+    Get.to(
+      () => RecipeDetailView(),
+      arguments: [
+        recipes[index].recipeId,
+        recipes[index].name,
+        recipes[index].image,
+        recipes[index].description,
+        recipes[index].time,
+        recipes[index].category,
+        recipes[index].ingredients,
+        recipes[index].instructions
+      ],
     );
   }
 
-  void increment() => count.value++;
+  Stream<List<RecipeListModel>> recipesStream() {
+    return firestore.collection('recipes').snapshots().map(
+      (event) {
+        return event.docs
+            .map((e) => RecipeListModel.fromDocumentSnapshot(e))
+            .toList();
+      },
+    );
+  }
 }
