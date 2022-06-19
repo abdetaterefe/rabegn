@@ -1,16 +1,29 @@
-# rabegn
+# Rabegn ራበኝ
 
-A new Flutter project.
+rabegn is a flutter recipe app mainly focused on Ethiopian food 
 
-## Getting Started
+## Appendix
 
-This project is a starting point for a Flutter application.
+this app fully made with getx state managenment, getx pattern structure and firebase for backend solution
 
-A few resources to get you started if this is your first Flutter project:
+the app have role based auth, the admin can add and delete recipes and can only delete and see users
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+I made this app as hobby project, the idea making this app came from wanting to know to cook food as i was about leave my family for learnig in another city because i have to know how to cook by myself when i live alone
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+i'm working on the app, its not complete project as its hobby project i might not completly finish or provide update even if i finish the app
+
+እንጃ ብቻ አፑ ስጀምረው ርቦኝ ነበር መሰለኝ ስሙን ራበኝ ያልኩት
+
+## Installation
+
+first connect the project to firebase and run the app by the following command
+
+```bash
+git clone https://github.com/abdetaterefe/rabegn.git
+cd rabegn
+flutter run
+```
+
+## 🚀 About me
+
+Im abdi from Ethiopia, thank u, bye
