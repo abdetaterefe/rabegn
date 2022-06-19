@@ -8,8 +8,6 @@ import '../modules/forgot/bindings/forgot_binding.dart';
 import '../modules/forgot/views/forgot_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
-import '../modules/profile/bindings/profile_binding.dart';
-import '../modules/profile/views/profile_view.dart';
 import '../modules/recipe/bindings/recipe_binding.dart';
 import '../modules/recipe/views/recipe_view.dart';
 import '../modules/settings/bindings/settings_binding.dart';
@@ -32,18 +30,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.RECIPE,
-      page: () => RecipeView(),
+      page: () => const RecipeView(),
       binding: RecipeBinding(),
     ),
     GetPage(
       name: _Paths.ADMIN,
-      page: () => AdminView(),
+      page: () => const AdminView(),
       binding: AdminBinding(),
-    ),
-    GetPage(
-      name: _Paths.PROFILE,
-      page: () => ProfileView(),
-      binding: ProfileBinding(),
     ),
     GetPage(
       name: _Paths.LOGIN,

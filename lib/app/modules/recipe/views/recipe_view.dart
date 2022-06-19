@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rabegn/app/modules/profile/views/profile_view.dart';
+import 'package:rabegn/app/modules/recipe/views/profile_view.dart';
 import 'package:rabegn/app/modules/recipe/controllers/recipe_controller.dart';
 import 'package:rabegn/app/modules/recipe/views/explore_recipe_view.dart';
 import 'package:rabegn/app/modules/recipe/views/favorite_recipe_view.dart';
@@ -17,10 +17,10 @@ class RecipeView extends StatelessWidget {
           body: IndexedStack(
             index: controller.tabIndex,
             children: [
-              MainRecipeView(),
+              const MainRecipeView(),
               const ExploreRecipeView(),
               FavoriteRecipeView(),
-              ProfileView(),
+              const ProfileView(),
             ],
           ),
           bottomNavigationBar: NavigationBarTheme(

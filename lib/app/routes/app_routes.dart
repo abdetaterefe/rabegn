@@ -6,7 +6,6 @@ abstract class Routes {
   static const AUTH = _Paths.AUTH;
   static const RECIPE = _Paths.RECIPE;
   static const ADMIN = _Paths.ADMIN;
-  static const PROFILE = _Paths.PROFILE;
   static const LOGIN = _Paths.LOGIN;
   static const SIGNUP = _Paths.SIGNUP;
   static const FORGOT = _Paths.FORGOT;
@@ -18,7 +17,6 @@ abstract class _Paths {
   static const AUTH = '/auth';
   static const RECIPE = '/recipe';
   static const ADMIN = '/admin';
-  static const PROFILE = '/profile';
   static const LOGIN = '/login';
   static const SIGNUP = '/signup';
   static const FORGOT = '/forgot';
