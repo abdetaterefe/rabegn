@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "343672087230",
-    "project_id": "rabegn-a184d",
-    "storage_bucket": "rabegn-a184d.appspot.com"
+    "project_number": "464517611796",
+    "project_id": "rabegn-8e0d0",
+    "storage_bucket": "rabegn-8e0d0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:343672087230:android:339628a86cf689180e34ef",
+        "mobilesdk_app_id": "1:464517611796:android:7588eefbdd5e198c464201",
         "android_client_info": {
           "package_name": "com.abdetaterefe.rabegn"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "343672087230-q554sggjn8mve1v0l4r5ereb1h34nvkm.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCtfE0ZpXp2u93fIMEyJtBcwRnFXOGGDVg"
+          "current_key": "AIzaSyAgEzUkRYgQUHruObO45Hj55Z6PJz7uvbo"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "343672087230-q554sggjn8mve1v0l4r5ereb1h34nvkm.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
